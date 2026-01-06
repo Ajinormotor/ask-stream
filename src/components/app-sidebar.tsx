@@ -57,7 +57,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <div className={cn("px-2", !open && "px-1.5")}>
           <PanelRightClose
             onClick={() => setOpen(!open)}
-            className="cursor-pointer rotate-180 w-[18px] h-[18px] text-sidebar-primary-foreground/70"
+            className="cursor-pointer rotate-180 w-4.5 h-4.5
+             text-sidebar-primary-foreground/70"
           />
         </div>
       </SidebarHeader>

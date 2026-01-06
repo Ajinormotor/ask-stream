@@ -1,9 +1,11 @@
-import Layout from "@/components/layouts";
+
+import StreamsIndex from "@/components/stream";
+
 
 export default function Streams() {
   return (
-    <Layout>
-      <h1>Streams</h1>
-    </Layout>
+<div>
+  <StreamsIndex  />
+</div>
   );
 }

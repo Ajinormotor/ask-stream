@@ -56,7 +56,7 @@ export function NavMain({
 
   return (
     <SidebarGroup>
-      <SidebarMenu className="gap-[12px]">
+      <SidebarMenu className="gap-3">
         {items.map((item) => (
           <>
             {item.items && item.items.length > 0 ? (
@@ -73,7 +73,7 @@ export function NavMain({
                       {item.icon && (
                         <item.icon
                           className={cn(
-                            "text-sidebar-primary-foreground w-[12px] h-[12px]",
+                            "text-sidebar-primary-foreground w-3 h-3",
                             isActive(item.url) && "text-[#623BA5]"
                           )}
                         />
@@ -121,7 +121,7 @@ export function NavMain({
                   {item.icon && (
                     <item.icon
                       className={cn(
-                        "text-sidebar-primary-foreground w-[12px] h-[12px]",
+                        "text-sidebar-primary-foreground w-3 h-3",
                         isActive(item.url) && "text-[#623BA5]"
                       )}
                     />
