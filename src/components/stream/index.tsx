@@ -70,8 +70,7 @@ const StreamsIndex = () => {
 {/* Text */}
 <div className={`
   ${showAnalyze ? 'hidden md:flex md:flex-col' : 'flex flex-col'}  `}>
-<h1 className="
-  font-bricolage font-semibold 
+<h1 className=" font-bricolage font-semibold 
   md:leading-16 md:text-[57px]  text-5xl leading-14
   text-transparent bg-clip-text 
   bg-[linear-gradient(90deg,#625AFA_0.05%,#272464_22.24%)]
