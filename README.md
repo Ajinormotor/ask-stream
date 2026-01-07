@@ -1,40 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# **Peppermint Conversational Analytics – Stream Dashboard**
 
-## Getting Started
+This project implements the **Stream Dashboard** for the Peppermint conversational analytics interface, focusing on usability, scalability, and responsiveness across devices.
 
-First, run the development server:
+---
+
+## **🚀 Live Demo**
+
+**Vercel Deployment:**  
+[https://ask-stream.vercel.app/dashboard/stream](https://ask-stream.vercel.app/dashboard/stream)
+
+---
+
+## **🧠 Approach & Architecture**
+
+The solution was built using **Next.js, TypeScript, and Tailwind CSS**, with a **component-driven architecture** to ensure reusability and maintainability.
+
+**Key Goals:**
+
+- Clean separation of concerns  
+- Scalable UI for large conversation histories  
+- Mobile-first responsiveness  
+- Readiness for backend/API integration  
+
+---
+
+## **✨ Features Implemented**
+
+1. **Conversational History Grouping**  
+   - Conversations are grouped by: **Today**, **Last 7 Days**, and **Monthly buckets**  
+   - Collapsible sections improve readability and reduce visual noise  
+
+2. **Dropdown Filtering**  
+   - A filter mechanism is implemented for users with 10+ conversations  
+   - Prevents excessive vertical growth and improves discoverability  
+   - Supports: **Today**, **Last 7 Days**, and **Monthly History**  
+
+3. **Bookmarking System**  
+   - Users can bookmark important conversations  
+   - Bookmarks persist in **localStorage** to simulate real-world persistence  
+   - Duplicate bookmarks are prevented  
+   - Easily replaceable with an API-based persistence layer  
+
+4. **Mobile Responsiveness**  
+   - Mobile-first design approach ensures layout adapts across:  
+     - Mobile  
+     - Tablet  
+     - Desktop  
+   - Scrollable containers maintain usability on smaller screens  
+
+5. **API-Ready Architecture**  
+   - Placeholder functions included for sending requests to a backend  
+   - Allows seamless integration if/when endpoints become available  
+   - No major refactor needed to connect live APIs  
+
+---
+
+## **📌 Assumptions Made**
+
+- Users may have many conversations; filtering and collapsible sections are necessary  
+- Mobile users are a primary audience; responsiveness is critical  
+- Bookmarking should persist across sessions, even without backend support  
+- Backend APIs may not yet be available; frontend logic remains flexible  
+- UI interactions should remain fast and intuitive without overloading the user  
+
+---
+
+## **🛠️ Tech Stack**
+
+- **Next.js**  
+- **TypeScript**  
+- **React**  
+- **Tailwind CSS**  
+- **Lucide Icons**  
+- **LocalStorage** (temporary persistence)  
+
+---
+
+## **⚙️ Setup Instructions**
+
+**1. Clone the repository**  
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+git clone https://github.com/Ajinormotor/ask-stream.git

@@ -145,3 +145,23 @@
   font-style: italic;
 }
 }
+
+/* Thin scrollbar */
+.scrollbar-thin {
+  scrollbar-width: thin;              
+  scrollbar-color: #E3E8EE transparent;
+}
+
+/* Webkit (Chrome, Edge, Safari) */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: #E3E8EE;
+  border-radius: 9999px;
+}

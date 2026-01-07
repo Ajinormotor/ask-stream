@@ -2,16 +2,18 @@ import { BookmarkType } from "@/types";
 import { filterLast7Days, filterToday, groupByMonth } from "@/utils";
 import { BookmarkIcon, ChevronDown, ChevronUp, Link2, Tag } from "lucide-react";
 import { useState } from "react";
+import { toast } from 'sonner'
 
 interface BookmarkProps {
   data: BookmarkType[];
   activeId: string;
   onSelect: (item: BookmarkType) => void;
+  setShowAnalyze: React.Dispatch<React.SetStateAction<boolean | null>>;
 }
 
 const STORAGE_KEY = "localBookmarks";
 
-const Bookmark = ({ data, activeId, onSelect }: BookmarkProps) => {
+const Bookmark = ({  data, activeId, onSelect, setShowAnalyze}: BookmarkProps) => {
   const [showToday, setShowToday] = useState(true);
   const [showDays, setShowDays] = useState(false);
   const [openMonth, setOpenMonth] = useState<string | null>(null);
@@ -21,22 +23,34 @@ const Bookmark = ({ data, activeId, onSelect }: BookmarkProps) => {
     return stored ? JSON.parse(stored) : [];
   });
 
-  const handleBookmark = (item: BookmarkType) => {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    const existing: BookmarkType[] = stored ? JSON.parse(stored) : [];
+const handleBookmark = (item: BookmarkType) => {
+  const stored = localStorage.getItem(STORAGE_KEY);
+  const existing: BookmarkType[] = stored ? JSON.parse(stored) : [];
 
-    if (existing.some((b) => b.id === item.id)) return;
+  if (existing.some((b) => b.id === item.id)) return;
 
-    localStorage.setItem(STORAGE_KEY, JSON.stringify([item, ...existing]));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify([item, ...existing]));
 
-    window.location.reload();
-  };
+  toast.success("Bookmark added");
+
+  setShowAnalyze(true); 
+
+  setTimeout(() => {
+    window.location.reload()
+  })
+};
+
+
+
+
 
   const months = groupByMonth(data);
 
   return (
     <div className="w-full border border-[#EDEEF0] h-full flex flex-col gap-3 p-2">
-      {/* ---------------- Bookmarks ---------------- */}
+
+      {/* Bookmark */}
+
       <div className="flex flex-col gap-1">
         <h1 className="text-[#959AA6] text-base font-medium">Bookmarks</h1>
 
@@ -47,10 +61,10 @@ const Bookmark = ({ data, activeId, onSelect }: BookmarkProps) => {
         )}
       </div>
 
-      {/* ---------------- History ---------------- */}
-      <div className="flex-1 flex flex-col gap-2">
+   {/* History */}
+      <div className="flex-1 flex flex-col ">
         {/* Today */}
-        <SectionHeader
+        <ConversationHeader
           title="Today"
           open={showToday}
           onToggle={() => setShowToday(!showToday)}
@@ -68,7 +82,7 @@ const Bookmark = ({ data, activeId, onSelect }: BookmarkProps) => {
           ))}
 
         {/* Last 7 days */}
-        <SectionHeader
+        <ConversationHeader
           title="Last 7 days"
           open={showDays}
           onToggle={() => setShowDays(!showDays)}
@@ -91,7 +105,7 @@ const Bookmark = ({ data, activeId, onSelect }: BookmarkProps) => {
 
           return (
             <div key={month} className="flex flex-col">
-              <SectionHeader
+              <ConversationHeader
                 title={month}
                 open={isOpen}
                 onToggle={() => setOpenMonth(isOpen ? null : month)}
@@ -114,7 +128,8 @@ const Bookmark = ({ data, activeId, onSelect }: BookmarkProps) => {
         })}
       </div>
 
-      {/* ---------------- Footer ---------------- */}
+
+{/* Footer */}
       <div className="flex items-center gap-2">
         <div className="flex items-center bg-[#EFEFFF] rounded-sm gap-1 px-2 py-0.5">
           <Tag size={10} color="#625AFA" />
@@ -130,7 +145,7 @@ export default Bookmark;
 
 
 
-const SectionHeader = ({
+const ConversationHeader = ({
   title,
   open,
   onToggle,
@@ -161,6 +176,20 @@ const RenderItem = ({
   onSelect,
   onBookmark,
 }: RenderItemProps) => {
+
+  const handleCopyLink = (link: string) => {
+  navigator.clipboard.writeText(link)
+    .then(() => {
+      toast.success(`Link copied`);
+    })
+    .catch(() => {
+      toast.error("Failed to copy link");
+    });
+};
+
+
+
+
   return (
     <div
       onClick={() => onSelect?.(item)}
@@ -184,7 +213,17 @@ const RenderItem = ({
             }}
           />
         )}
-        <Link2 size={16} />
+             {item.link && (
+          <Link2
+            size={16}
+            className="cursor-pointer"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleCopyLink(item.link);
+            }}
+          />
+          
+             )}
       </div>
     </div>
   );

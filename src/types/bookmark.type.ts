@@ -1,4 +1,4 @@
-import { SectionType } from "./section.type";
+import { conversationType } from "./conversation.type";
 
 
 export type DemographicStat = {
@@ -16,7 +16,7 @@ export type BookmarkType = {
   id: string;
   question: string;
   date: string;
-  sections: SectionType[];
+  conversations: conversationType[];
   demographics: {
     stats: DemographicStat[];
     locations: LocationDistribution[];

@@ -1,4 +1,4 @@
-export interface SectionType {
+export interface conversationType {
   id: string;
   title: string;
   heading: string;
@@ -19,4 +19,5 @@ export interface DropdownContent {
   title: string;
   description: string;
   date: string;
+  tags: string;
 }

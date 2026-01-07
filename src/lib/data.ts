@@ -3,13 +3,13 @@ export const data = {
     {
       "id": "bm-1",
       "title": "Why is sentiment dropping this quarter?",
-      "section": "Section 1",
+      "conversation": "conversation 1",
       "type": "bookmark"
     },
     {
       "id": "bm-2",
       "title": "What do people dislike about the product?",
-      "section": "Section 2",
+      "conversation": "conversation 2",
       "type": "bookmark"
     }
   ],
@@ -18,7 +18,7 @@ export const data = {
       {
         "id": "h-1",
         "title": "Why is sentiment dropping this quarter?",
-        "section": "Section 1",
+        "conversation": "conversation 1",
         "timestamp": "2025-11-20"
       }
     ],
@@ -26,7 +26,7 @@ export const data = {
       {
         "id": "h-2",
         "title": "Why is sentiment dropping this quarter?",
-        "section": "Section 1",
+        "conversation": "conversation 1",
         "timestamp": "2025-11-18"
       }
     ],
@@ -34,7 +34,7 @@ export const data = {
       {
         "id": "h-3",
         "title": "What do people dislike about the product?",
-        "section": "Section 2",
+        "conversation": "conversation 2",
         "timestamp": "2025-11-10"
       }
     ]

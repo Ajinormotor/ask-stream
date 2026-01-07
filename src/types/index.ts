@@ -1,2 +1,2 @@
 export * from "./bookmark.type"
-export * from './section.type'
+export * from './conversation.type'

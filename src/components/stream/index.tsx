@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
 import Layout from '../layouts'
 import Bookmark from './bookmark'
-import Sections from './sections'
+// import conversations from './conversations'
 // import { Input } from '../ui/input'
 import { Button } from '../ui/button'
 import {  ArrowRight,  ChevronDown,  Tag } from 'lucide-react'
 import { BookmarkType } from '@/types'
+
 import { bookmarksData } from '@/data/section.data'
+import Conversations from './conversations'
+
 
 const StreamsIndex = () => {
 
@@ -15,11 +18,22 @@ const StreamsIndex = () => {
   );
    const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
    const [showAnalyze, setShowAnalyze] = useState<boolean | null>(null)
+     const [loading, setLoading] = useState(false)
 
   const titles = [
     {title: 'Excepteur sint occaecat cupidatat?'},
     {title:  'Excepteur sint occaecat cupidatat?'}
   ]
+
+
+    const handleAnalyzeClick = () => {
+    setLoading(true) 
+    setShowAnalyze(false) 
+    setTimeout(() => {
+      setLoading(false) 
+      setShowAnalyze(true) 
+    }, 2000) 
+  }
 
   return (
  <Layout>
@@ -93,7 +107,7 @@ const StreamsIndex = () => {
       <p className="text-sm text-gray-500 mt-1">Conversational Analytics</p>
     </div>
 
-    <Button onClick={() => setShowAnalyze(true)}
+    <Button onClick={() => handleAnalyzeClick()}
      className="shadow-[0px_2px_5px_0px_#3C42571F,0px_1px_1px_0px_#00000014,0px_-1px_1px_0px_#0000001F_inset]
     bg-[#141232] hover:bg-[#141232] cursor-pointer">
       Analyze
@@ -129,23 +143,33 @@ const StreamsIndex = () => {
 
   </div>
 
+          {loading && (
+          <div className="w-full flex items-center justify-center py-20">
+            <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#141232]" />
+          </div>
+        )}
+
+
 
        {/* Show-analyze  */}
  { showAnalyze &&   <div className='flex flex-col md:flex-row w-full min-h-205.5
-  border-t border-[#EDEEF0] p-4 md:p-0'>
+  border-t border-[#EDEEF0] p-4 md:p-0 mb-5'>
 
     <div className=' md:max-w-[22%] w-full'>
     <Bookmark
           data={bookmarksData}
           activeId={activeBookmark.id}
           onSelect={setActiveBookmark}
+            setShowAnalyze={setShowAnalyze}
         />
     </div>
 
-  <div className='md:max-w-[78%] md:p-10 '>
- <Sections
-  sections={activeBookmark.sections}
+  <div className='md:max-w-[78%] lg:p-10  '>
+ <Conversations
+  conversations={activeBookmark.conversations}
   demographics={activeBookmark.demographics}
+         setShowAnalyze={setShowAnalyze}
+
 />
 
   </div>
@@ -157,7 +181,7 @@ const StreamsIndex = () => {
 {/* Smaller screen Input */}
 <div
   className={`
-    fixed bottom-2 left-0 w-full md:hidden border border-[#EDEEF0] rounded-2xl
+    fixed bottom-0 left-0 w-full md:hidden border border-[#EDEEF0] rounded-t-2xl
     p-4 min-h-26 flex flex-col justify-between bg-white  z-50
     ${showAnalyze ? "flex" : "hidden"}
   `}
